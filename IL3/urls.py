@@ -18,7 +18,6 @@ from django.contrib import admin
 
 from main import views
 from authentication.views import login
-from authentication.views import logout
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
