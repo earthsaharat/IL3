@@ -21,9 +21,11 @@ def test(request):
 isLock = True
 
 def lock(request):
+	isLock = True
 	return HttpResponse(isLock)
 
 def unlock(request):
+	isLock = False
 	return HttpResponse(isLock)
 
 def state(request):
