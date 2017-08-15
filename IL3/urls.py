@@ -23,5 +23,8 @@ from authentication.views import logout
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^test/$', views.test, name='test'),
+    url(r'^lock/$', views.lock, name='lock'),
+    url(r'^unlock/$', views.unlock, name='unlock'),
+
     url(r'^login/(?P<username>[-\w]+)/(?P<password>[-\w]+)$', login, name='login'),
 ]
