@@ -24,5 +24,4 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^test/$', views.test, name='test'),
     url(r'^login/(?P<username>[-\w]+)/(?P<password>[-\w]+)$', login, name='login'),
-    url(r'^logout/$', logout, name='logout'),
 ]
