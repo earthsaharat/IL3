@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^test/$', views.test, name='test'),
     url(r'^lock/$', views.lock, name='lock'),
     url(r'^unlock/$', views.unlock, name='unlock'),
+    url(r'^state/$', views.state, name='state'),
 
     url(r'^login/(?P<username>[-\w]+)/(?P<password>[-\w]+)$', login, name='login'),
 ]
