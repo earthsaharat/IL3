@@ -18,11 +18,11 @@ from django.contrib import admin
 
 from main import views
 from authentication.views import login
-from authentication.views import login2
+from authentication.views import logout
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^test/$', views.test, name='test'),
     url(r'^login/(?P<username>[-\w]+)/(?P<password>[-\w]+)$', login, name='login'),
-    url(r'^login2/$', login2, name='login2'),
+    url(r'^logout/$', logout, name='logout'),
 ]

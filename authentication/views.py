@@ -23,6 +23,10 @@ def login(request,username,password):
         # Return an 'invalid login' error message.
         return HttpResponse("E")
 
+ def logout(request):
+ 	logout(request)
+ 	return HttpResponse("C")
+
 @csrf_exempt
 def login2(request):
 	if request.method == 'GET':
