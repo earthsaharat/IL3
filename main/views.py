@@ -16,3 +16,17 @@ from django.contrib.auth import authenticate, login
 def test(request):
 	#return JsonResponse({'a':"Hello"})
 	return HttpResponse("Hello")
+
+
+isLock = True
+
+def lock(request):
+	isLock = True
+	return HttpResponse(isLock)
+
+def unlock(request):
+	isLock = False
+	return HttpResponse(isLock)
+
+def state(request):
+	return HttpResponse(isLock)
