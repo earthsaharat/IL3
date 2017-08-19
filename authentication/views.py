@@ -51,7 +51,7 @@ def web_signin(request):
 				#print >>sys.stderr, "session expiry: %s"%request.session.get_expiry_age()
 
 				login(request, user)
-				if 'username' in request.session:
+				#if 'username' in request.session:
 					#print >>sys.stderr, "username_i: %s"%request.session['username']
 				request.session['username'] = user.username
 				#print >>sys.stderr, "username_f: %s"%request.session['username']
