@@ -17,7 +17,12 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from main import views
-from authentication.views import login
+
+from authentication.views import signin
+from authentication.views import web_signout
+from authentication.views import web_signin
+
+from web.views import home
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,5 +31,9 @@ urlpatterns = [
     url(r'^unlock/$', views.unlock, name='unlock'),
     url(r'^state/$', views.state, name='state'),
 
-    url(r'^login/(?P<username>[-\w]+)/(?P<password>[-\w]+)$', login, name='login'),
+    url(r'^login/(?P<username>[-\w]+)/(?P<password>[-\w]+)$', signin, name='signin'),
+    url(r'^authentication/logout/$', web_signout, name='web_signout'),
+    url(r'^authentication/login/$', web_signin, name='web_signin'),
+
+    url(r'^$', home, name='home'),
 ]
