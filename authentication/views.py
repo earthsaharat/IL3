@@ -29,7 +29,7 @@ def signin(request,username,password):
 def web_signout(request):
 	if 'username' in request.session:
 		del request.session['username']
-		print "del uname"
+		#print "del uname"
 	logout(request)
 	return redirect('home')
 
@@ -39,22 +39,22 @@ def web_signin(request):
 		username = request.POST['username']
 		password = request.POST['password']
 		user = authenticate(username=username, password=password)
-		print >>sys.stderr, "debug"
+		#print >>sys.stderr, "debug"
 		if user is not None:
 			if user.is_active:
 				if 'remember' in request.POST:
-					print>>sys.stderr, "%s type: %s"%(request.POST['remember'],type(request.POST['remember']))
+					#print>>sys.stderr, "%s type: %s"%(request.POST['remember'],type(request.POST['remember']))
 					if request.POST['remember']=='1':
 						request.session.set_expiry(604800) #remember keep session for a week
 				else:
 					request.session.set_expiry(14400) #not remember keep session for 4hrs
-				print >>sys.stderr, "session expiry: %s"%request.session.get_expiry_age()
+				#print >>sys.stderr, "session expiry: %s"%request.session.get_expiry_age()
 
 				login(request, user)
 				if 'username' in request.session:
-					print >>sys.stderr, "username_i: %s"%request.session['username']
+					#print >>sys.stderr, "username_i: %s"%request.session['username']
 				request.session['username'] = user.username
-				print >>sys.stderr, "username_f: %s"%request.session['username']
+				#print >>sys.stderr, "username_f: %s"%request.session['username']
 				
 				return redirect('home')
 			else:
