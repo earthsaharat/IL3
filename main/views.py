@@ -30,3 +30,5 @@ def unlock(request):
 
 def state(request):
 	return HttpResponse(isLock)
+
+

@@ -64,6 +64,8 @@ def web_signin(request):
 		return render(request,'login.html',{'msg': msg})   
 	return render(request,'login.html',{'msg': ""})
 
+def web_admin(request):
+	return render(request,'admin.html',{'msg': ""})
 
 @csrf_exempt
 def login2(request):
