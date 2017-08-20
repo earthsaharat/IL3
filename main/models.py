@@ -12,6 +12,8 @@ class Lock(models.Model):
     state	= models.TextField()
     isLock	= models.BooleanField()
     active	= models.DateTimeField(blank=True, null=True)
+    def __unicode__(self):
+        return self.mac
 
 class Log(models.Model):
 	lock 	= models.ForeignKey(Lock)

@@ -22,11 +22,18 @@ from authentication.views import signin
 
 from authentication.views import web_signout
 from authentication.views import web_signin
-from authentication.views import web_admin
+from authentication.views import web_register
 
 from web.views import home
+from web.views import admin_addlock
+
+from web.views import web_lock
+from web.views import web_unlock
+from web.views import web_logs
 
 urlpatterns = [
+    url(r'^$', home, name='home'),
+
     url(r'^admin/', admin.site.urls),
     url(r'^test/$', views.test, name='test'),
     url(r'^lock/$', views.lock, name='lock'),
@@ -36,7 +43,11 @@ urlpatterns = [
     url(r'^login/(?P<username>[-\w]+)/(?P<password>[-\w]+)$', signin, name='signin'),
     url(r'^authentication/logout/$', web_signout, name='web_signout'),
     url(r'^authentication/login/$', web_signin, name='web_signin'),
-    url(r'^authentication/admin/$', web_admin, name='web_admin'),
+    url(r'^authentication/register/$', web_register, name='web_register'),
 
-    url(r'^$', home, name='home'),
+    url(r'^web/lock/(?P<mac>[-\w]+)$', web_lock, name='web_lock'),
+    url(r'^web/unlock/(?P<mac>[-\w]+)$', web_unlock, name='web_unlock'),
+    url(r'^web/logs/(?P<mac>[-\w]+)$', web_logs, name='web_logs'),
+
+    url(r'^admin/addlock/$', admin_addlock, name='admin_addlock'),
 ]

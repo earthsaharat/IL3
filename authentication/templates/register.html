@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <title>Intelligent Lock - Login</title>
+    <title>Intelligent Lock - Register</title>
     <div class="login-panel panel panel-default">
         <div class="panel-heading" style="">
         	<h1 style="font-family: Futura; font-weight: bold; text-align: center;color: #fff">Intelligent Lock</h1>
@@ -10,17 +10,15 @@
             <form role="form" method="post" action="">{% csrf_token %}
                 <fieldset>
                     <div class="form-group">
-                        <input class="form-control" placeholder="Username" name="username" type="text" autofocus>
+                        <input class="form-control" placeholder="Username" name="username" type="text" autofocus required="">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                        <input class="form-control" placeholder="Password" name="password" type="password" value="" required="">
                     </div>
-                    <div class="checkbox">
-                        <label>
-                            <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                        </label>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Password confirmation" name="password-c" type="password" value="" required="">
                     </div>
-                    <input type="submit" class="btn btn-lg btn-block" value="Sign In" style="background-color: #fff">
+                    <input type="submit" class="btn btn-lg btn-block" value="Register" style="background-color: #fff">
                 </fieldset>
             </form>
         </div>
