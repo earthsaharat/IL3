@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<title>Intelligent Lock - Admin</title>
+	<link rel="stylesheet" href="{% static 'Bootstrap/bootstrap.min.css' %}">
+	<script src="{% static 'Bootstrap/jquery.min.js' %}"></script>
+	<script src="{% static 'Bootstrap/bootstrap.min.js' %}"></script>
+
+	<style>
+ 		@font-face {
+		   font-family: Futura; 
+		   src: url({% static 'Fonts/Futura.otf' %});
+		} 
+		.body{
+			font-family: Futura;
+		}
+		.body-head{
+			font-family: Futura;
+			font-weight: bold;
+		}
+		.line{
+			height: 1px;
+			background-color: #ccc;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row" style="margin: 20px">
+			<div class="col-xs-6"><p class="body-head" style="font-size: 40px;">Intelligent Lock - Admin</p></div>
+			<div class="col-xs-3"><a class="body-head" style="font-size: 40px;" href="/">Home</a></div>
+			<div class="col-xs-3"><a class="body-head" style="font-size: 40px;" href="/admin/">Admin</a></div>
+		</div>
+		<div class="row line"></div>
+		<div class="row" style="margin: 20px">
+			<p class="body-head" style="font-size: 16px">Add Lock</p>
+		</div>
+		<div class="row" style="margin: 20px">
+			<form role="form" method="post" action="">{% csrf_token %}
+                <fieldset>
+                    <div class="form-group"><input class="form-control" placeholder="mac" name="mac" type="text" autofocus></div>
+                    <div class="form-group"><input class="form-control" placeholder="Lock's Name" name="name" type="text" autofocus></div>
+                    <input type="submit" class="btn btn-lg btn-block" value="Add" style="background-color: #ccc;color: #fff">
+                </fieldset>
+            </form>
+		</div>
+		<div class="row line"></div>
+
+	</div>
+
+</body>
+</html>

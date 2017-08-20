@@ -13,6 +13,13 @@
 		   font-family: Futura; 
 		   src: url({% static 'Fonts/Futura.otf' %});
 		} 
+		.body{
+			font-family: Futura;
+		}
+		.body-head{
+			font-family: Futura;
+			font-weight: bold;
+		}
 	</style>
 
 </head>
@@ -36,7 +43,7 @@
 	     		{% if user.is_authenticated %}
 		      		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="" style="text-transform: uppercase;">{{ user.get_username }}<span class="caret"></span></a>
 		        		<ul class="dropdown-menu">
-		        		  	<li><a href="/admin/">Admin</a></li>
+		        		  	<li><a href="/authentication/admin/">Admin</a></li>
 		        		  	<li><a href="/change_password/">ChangePassword</a></li>
 		        		  	<li><a href="/authentication/logout/">Logout</a></li>
 		        		</ul>
@@ -49,7 +56,23 @@
 	  </div>
 	</nav>
 
-<p style="font-family: Futura; font-weight: bold; font-size: 60px;text-align: center;">Intelligent Lock</p>
+	
+	<div class="container body">
+        <div class="row">
+            <div class="col-xs-8">
+        		<p class="body-head" style="font-size: 60px;">{{ user.get_username }}</p>
+            </div>
+            <div class="col-xs-4">
+        		<p class="body-head" style="font-size: 60px;text-align: right;">+ Add Lock</p>
+            </div>
+        </div>
+
+        <div class="row" style="background-color: #f2f2f2; margin-top: 20px; height: 100px;">
+        	<div class="container">
+        		<p class="body-head" style="font-size: 40px;    padding: 20px 0;">Lockname</p>
+        	</div>
+        </div>
+    </div>
 
 </body>
 </html>
