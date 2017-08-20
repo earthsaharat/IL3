@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>	
+	<link rel="stylesheet" href="{% static 'Bootstrap/bootstrap.min.css' %}">
+	<script src="{% static 'Bootstrap/jquery.min.js' %}"></script>
+	<script src="{% static 'Bootstrap/bootstrap.min.js' %}"></script>
+
+	<style>
+ 		@font-face {
+		   font-family: Futura; 
+		   src: url({% static 'Fonts/Futura.otf' %});
+		} 
+		body{
+			font-family: Futura;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-xs-4 col-xs-offset-4">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

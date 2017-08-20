@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<title>Intelligent Lock</title>
+
+	<link rel="stylesheet" href="{% static 'Bootstrap/bootstrap.min.css' %}">
+	<script src="{% static 'Bootstrap/jquery.min.js' %}"></script>
+	<script src="{% static 'Bootstrap/bootstrap.min.js' %}"></script>
+
+	<style>
+ 		@font-face {
+		   font-family: Futura; 
+		   src: url({% static 'Fonts/Futura.otf' %});
+		} 
+		body{
+			font-family: Futura;
+		}
+		.body-head{
+			font-weight: bold;
+		}
+		.body-head-2{
+			font-weight: medium;
+			font-size: 16px;
+			padding-top: 8px;
+		}
+
+		.text-1{
+			color: #ccc;
+			text-align: right;
+		}
+		.text-2{
+			color: #666;
+			text-align: left;
+		}
+
+		.button-1{
+			color: #666;
+			font-weight: medium;
+			font-size: 60px;
+			padding-top: 8px;
+			text-align: center;
+		}
+		.button-1:hover{
+			color: #ccc;
+			text-decoration: none;
+		}
+
+		.button-2 {
+			color: #666;
+			font-weight: medium;
+			font-size: 16px;
+		}
+		.button-2:hover{
+			color: #ccc;
+			text-decoration: none;
+		}
+	</style>
+
+</head>
+<body>
+<!-- Navbar -->
+	<nav class="navbar navbar-default">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>                        
+	      </button>
+	      <a class="navbar-brand" href="/">Intelligent Lock</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      	<ul class="nav navbar-nav navbar-left">
+		      	<li><a href="/">HOME</a></li>
+	      	</ul>
+	     	<ul class="nav navbar-nav navbar-right">
+	     		{% if user.is_authenticated %}
+		      		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="" style="text-transform: uppercase;">{{ user.get_username }}<span class="caret"></span></a>
+		        		<ul class="dropdown-menu">
+		        		  	<li><a href="/admin/">Admin</a></li>
+		        		  	<li><a href="/admin/addlock/">Admin - Add Lock</a></li>
+		        		  	<li><a href="/authentication/logout/">Logout</a></li>
+		        		</ul>
+		      		</li>	
+		      	{% else %}
+		      		<li><a href="/authentication/register/">REGISTER</a></li>
+		      		<li><a href="/authentication/login/">LOGIN</a></li>
+		      	{% endif %}
+      		</ul>
+	    </div>
+	  </div>
+	</nav>
+	{% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -6,9 +6,8 @@ from django.shortcuts import redirect
 
 from django.http import HttpResponse
 
-from django.contrib.auth import authenticate, login, update_session_auth_hash
-from django.contrib.auth import logout
-
+from django.contrib.auth import authenticate, login, update_session_auth_hash,logout
+from django.contrib.auth.models import User
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -64,16 +63,31 @@ def web_signin(request):
 		return render(request,'login.html',{'msg': msg})   
 	return render(request,'login.html',{'msg': ""})
 
-def web_admin(request):
-	return render(request,'admin.html',{'msg': ""})
-
-@csrf_exempt
-def login2(request):
-	if request.method == 'GET':
-		return JsonResponse({'key': 'get'})
+def web_register(request):
+	msg = ""
 	if request.method == 'POST':
-		d = json.loads(request.body)
-		print(d.get("username","ERROR"))
-		print(d.get("password","ERROR"))
-		return JsonResponse({'key': 'post'})
+		username = request.POST['username']
+		password = request.POST['password']
+		passwordc = request.POST['password-c']
+		if password == passwordc :
+			if not User.objects.filter(username=username):
+				user = User.objects.create_user(username, None, password)
+				user.save()
+				login(request, user)
+				return redirect('home')
+			else:
+				msg = "A user with that username already exists."
+		else:
+			msg = "The two password fields didn't match."
+	return render(request,'register.html',{'msg': msg})
+
+#@csrf_exempt
+#def login2(request):
+#	if request.method == 'GET':
+#		return JsonResponse({'key': 'get'})
+#	if request.method == 'POST':
+#		d = json.loads(request.body)
+#		print(d.get("username","ERROR"))
+#		print(d.get("password","ERROR"))
+#		return JsonResponse({'key': 'post'})
 
