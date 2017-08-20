@@ -66,12 +66,14 @@ def web_signin(request):
 def web_register(request):
 	msg = ""
 	if request.method == 'POST':
-		username = request.POST['username']
-		password = request.POST['password']
-		passwordc = request.POST['password-c']
+		username 	= request.POST['username']
+		password 	= request.POST['password']
+		passwordc 	= request.POST['password-c']
+		name		= request.POST['first_name']
 		if password == passwordc :
 			if not User.objects.filter(username=username):
 				user = User.objects.create_user(username, None, password)
+				user.first_name = name
 				user.save()
 				login(request, user)
 				return redirect('home')
