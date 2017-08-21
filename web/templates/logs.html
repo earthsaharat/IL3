@@ -76,10 +76,15 @@
 						<td>{{i.date}}</td>
 
 			        	{% if i.action is 1 %}
-			        		<td>Lock with web</td>
+			        		<td>[ Web ] Lock</td>
 			        	{% elif i.action is 2 %}
-			        		<td>Unlock with web</td>
+			        		<td>[ Web ] Unlock</td>
+			        	{% elif i.action is 3 %}
+			        		<td>[ Lock ] Lock</td>
+			        	{% elif i.action is 4 %}
+			        		<td>[ Lock ] Unlock</td>
 			        	{% endif %}
+			        	
 			        	<td>{{i.user}}</td>
 			      	</tr>
 					{% endfor %}
