@@ -38,8 +38,7 @@ urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
 
-    url(r'^mcu/lock/(?P<mac>[-\w]+)$', views.lock, name='lock'),
-    url(r'^mcu/unlock/(?P<mac>[-\w]+)$', views.unlock, name='unlock'),
+    url(r'^mcu/open/(?P<mac>[-\w]+)/(?P<side>[-\w]+)$', views.open, name='open'),
     url(r'^mcu/state/(?P<mac>[-\w]+)$', views.state, name='state'),
 
     url(r'^login/(?P<username>[-\w]+)/(?P<password>[-\w]+)$', signin, name='signin'),

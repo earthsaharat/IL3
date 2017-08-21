@@ -1,4 +1,5 @@
 {% extends 'web_base.html' %}
+{% load static %}
 {% block content %}
 
 	<div class="container body">
@@ -76,13 +77,13 @@
 						<td>{{i.date}}</td>
 
 			        	{% if i.action is 1 %}
-			        		<td>[ Web ] Lock</td>
+			        		<td>Lock</td>
 			        	{% elif i.action is 2 %}
-			        		<td>[ Web ] Unlock</td>
+			        		<td>Unlock</td>
 			        	{% elif i.action is 3 %}
-			        		<td>[ Lock ] Lock</td>
+			        		<td>Open - inside</td>
 			        	{% elif i.action is 4 %}
-			        		<td>[ Lock ] Unlock</td>
+			        		<td>Open - outside</td>
 			        	{% endif %}
 			        	
 			        	<td>{{i.user}}</td>
