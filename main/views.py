@@ -10,23 +10,29 @@ from django.http import JsonResponse
 import json
 
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 
+from django.utils import timezone
 
-# Create your views here.
-def test(request):
-	#return JsonResponse({'a':"Hello"})
-	return HttpResponse("Hello")
+from main.models import Lock
+from main.models import Log
 
+def lock(request,mac):
+	lock = Lock.objects.get(mac=mac)
+	if lock.isLock == False:
+		lock.isLock = True
+		lock.save()
+		Log.objects.create(lock=lock,user=User.objects.get(username="unknow"),action=3,date=timezone.now())
+	return HttpResponse(lock.isLock)
 
-isLock = True
+def unlock(request,mac):
+	lock = Lock.objects.get(mac=mac)
+	if lock.isLock == True:
+		lock.isLock = False
+		lock.save()
+		Log.objects.create(lock=lock,user=User.objects.get(username="unknow"),action=4,date=timezone.now())
+	return HttpResponse(lock.isLock)
 
-def lock(request):
-	isLock = True
-	return HttpResponse(isLock)
-
-def unlock(request):
-	isLock = False
-	return HttpResponse(isLock)
-
-def state(request):
+def state(request,mac):
+	isLock = Lock.objects.get(mac=mac).isLock
 	return HttpResponse(isLock)

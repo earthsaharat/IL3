@@ -1,0 +1,33 @@
+{% extends 'web_base.html' %}
+{% block content %}
+	<div class="container body">
+
+		
+
+        <title>Intelligent Lock - Profile</title>
+    	<div class="login-panel panel panel-default">
+        	<div class="panel-heading"><p class="body-head-2">Profile</p></div>
+    	    <div class="panel-body">
+    	        <p class="text-danger" style="text-align: center; color: #FF7A75;">{{msg}}</p>
+    	        <form role="form" method="post" action="">{% csrf_token %}
+    	            <fieldset>
+    	            	<div class="form-group">
+    	            		<p>id</p>
+    	                    <input class="form-control" placeholder="id" name="id" type="text" value="{{sender.id}}" disabled>
+    	                </div>
+    	            	<div class="form-group">
+    	            		<p>username</p>
+    	                    <input class="form-control" placeholder="Username" name="username" type="text" value="{{sender.username}}" disabled>
+    	                </div>
+    	                <div class="form-group">
+    	                   	<p>name</p>
+    	                    <input class="form-control" placeholder="Name" name="first_name" type="text" value="{{sender.name}}" autofocus required="">
+    	                </div>
+    	                <input type="submit" class="btn btn-lg btn-block" value="Save" style="background-color: #fff">
+    	            </fieldset>
+    	        </form>
+    	    </div>
+
+    	</div>
+    </div>
+{% endblock %}

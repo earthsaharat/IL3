@@ -10,6 +10,8 @@ from django.http import JsonResponse
 import json
 
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+
 
 from django.utils import timezone
 
@@ -89,8 +91,39 @@ def web_logs(request,mac):
 			members = alock.member
 			for j in json.loads(members):
 				if j['user'] == request.user.id:
-					sender_state = {'mac':alock.mac,'name':json.loads(alock.state)['name'],'isLock':alock.isLock,'active':alock.active}
+					users = []
+					#print(json.loads(alock.member))
+					for u in json.loads(alock.member):
+						users.append({'user':User.objects.get(id=u['user']).first_name,'rank':u['rank']})
+					sender_state = {'mac':alock.mac,'name':json.loads(alock.state)['name'],'isLock':alock.isLock,'active':alock.active,'member':users}
 					for k in Log.objects.filter(lock=alock):
 						sender.append({'date':k.date,'action':k.action,'user':k.user})
 					break
 	return render(request,'logs.html',{'sender':sender,'lock':sender_state})
+
+def web_add_user(request,mac):
+	locks = Lock.objects.filter(mac=mac)
+	msg = ""
+	sender = []
+	if locks:
+		for alock in locks:
+			members = alock.member
+			for j in json.loads(members):
+				if j['user'] == request.user.id: # check request.user in this lock
+					if j['rank'] == 1: # check admin
+						if request.method == 'POST' : #method POST
+							L = Lock.objects.get(mac=mac)
+							L.member = request.POST['detail']
+							sender = L.member
+							L.save()
+						else: # method GET
+							L = Lock.objects.get(mac=mac)
+							sender = L.member
+						return render(request,'add_user.html',{'msg':msg,'sender':sender})
+					else:
+						return redirect('home')
+					break
+				else:
+					msg = "You are not member of this lock."
+	#return render(request,'add_user.html',{'msg':msg,'sender':sender})
+	return redirect('home')

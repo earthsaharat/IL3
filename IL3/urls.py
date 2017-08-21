@@ -23,6 +23,7 @@ from authentication.views import signin
 from authentication.views import web_signout
 from authentication.views import web_signin
 from authentication.views import web_register
+from authentication.views import web_profile
 
 from web.views import home
 from web.views import admin_addlock
@@ -30,24 +31,27 @@ from web.views import admin_addlock
 from web.views import web_lock
 from web.views import web_unlock
 from web.views import web_logs
+from web.views import web_add_user
 
 urlpatterns = [
     url(r'^$', home, name='home'),
 
     url(r'^admin/', admin.site.urls),
-    url(r'^test/$', views.test, name='test'),
-    url(r'^lock/$', views.lock, name='lock'),
-    url(r'^unlock/$', views.unlock, name='unlock'),
-    url(r'^state/$', views.state, name='state'),
+
+    url(r'^mcu/lock/(?P<mac>[-\w]+)$', views.lock, name='lock'),
+    url(r'^mcu/unlock/(?P<mac>[-\w]+)$', views.unlock, name='unlock'),
+    url(r'^mcu/state/(?P<mac>[-\w]+)$', views.state, name='state'),
 
     url(r'^login/(?P<username>[-\w]+)/(?P<password>[-\w]+)$', signin, name='signin'),
     url(r'^authentication/logout/$', web_signout, name='web_signout'),
     url(r'^authentication/login/$', web_signin, name='web_signin'),
     url(r'^authentication/register/$', web_register, name='web_register'),
+    url(r'^authentication/profile/$', web_profile, name='web_profile'),
 
     url(r'^web/lock/(?P<mac>[-\w]+)$', web_lock, name='web_lock'),
     url(r'^web/unlock/(?P<mac>[-\w]+)$', web_unlock, name='web_unlock'),
     url(r'^web/logs/(?P<mac>[-\w]+)$', web_logs, name='web_logs'),
+    url(r'^web/adduser/(?P<mac>[-\w]+)$', web_add_user, name='web_add_user'),
 
     url(r'^admin/addlock/$', admin_addlock, name='admin_addlock'),
 ]
