@@ -93,3 +93,11 @@ def web_register(request):
 #		print(d.get("password","ERROR"))
 #		return JsonResponse({'key': 'post'})
 
+def web_profile(request):
+	if request.method == 'POST' and request.user.is_authenticated:
+		user = User.objects.get(id=request.user.id)
+		user.first_name = request.POST['first_name']
+		user.save()
+		return redirect('home')
+	sender = {'username':request.user.username,'name':request.user.first_name,'id':request.user.id}
+	return render(request,'profile.html',{'sender':sender})

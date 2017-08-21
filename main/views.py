@@ -11,22 +11,15 @@ import json
 
 from django.contrib.auth import authenticate, login
 
-
-# Create your views here.
-def test(request):
-	#return JsonResponse({'a':"Hello"})
-	return HttpResponse("Hello")
-
-
 isLock = True
 
-def lock(request):
+def lock(request,mac):
 	isLock = True
 	return HttpResponse(isLock)
 
-def unlock(request):
+def unlock(request,mac):
 	isLock = False
 	return HttpResponse(isLock)
 
-def state(request):
+def state(request,mac):
 	return HttpResponse(isLock)

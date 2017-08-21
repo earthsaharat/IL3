@@ -11,6 +11,10 @@
 		  	<div class="panel-body">
 		  		<div class="col-sm-9">
 		  			<div class="row">
+		  				<div class="col-sm-3"><p class="text-1">name</p></div>
+		  				<div class="col-sm-9"><p class="text-2">{{lock.name}}</p></div>
+		  			</div>
+		  			<div class="row">
 		  				<div class="col-sm-3"><p class="text-1">mac</p></div>
 		  				<div class="col-sm-9"><p class="text-2">{{lock.mac}}</p></div>
 		  			</div>
@@ -32,7 +36,30 @@
 		</div>
 
 		<div class="panel panel-default">
-		  	<div class="panel-heading body-head-2">Logs</div>
+		  	<div class="panel-heading">
+		  		<div class="row">
+		  			<div class="col-xs-9"><p class="body-head-2">Members</p></div>
+		  			<div class="col-xs-3" style="margin-top: 8px; text-align: right;"><a href="/web/adduser/{{lock.mac}}" class="button-2">[ Add ]</a></div>
+		  		</div>
+		  	</div>
+		  	<div class="panel-body">
+		  		{% for i in lock.member %}
+		  			{% if i.rank == 1 %}
+		  				<a class="text-x c-1">{{i.user}} - Admin</a>
+		  			{% elif i.rank == 2 %}
+		  				<a class="text-x c-2">{{i.user}} - Member</a>
+		  			{% endif %}
+		  			
+		  		{% endfor %}
+		  	</div>
+		 </div>
+
+		<div class="panel panel-default">
+		  	<div class="panel-heading">
+		  		<div class="row">
+		  			<div class="col-xs-9"><p class="body-head-2">Logs</p></div>
+		  		</div>
+		  	</div>
 		  	<div class="panel-body">
 		  		<table class="table table-condensed">
 			    <thead>

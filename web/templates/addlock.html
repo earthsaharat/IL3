@@ -1,62 +1,5 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html>
-<head>
-	<title>Intelligent Lock - Add Lock</title>
-	<link rel="stylesheet" href="{% static 'Bootstrap/bootstrap.min.css' %}">
-	<script src="{% static 'Bootstrap/jquery.min.js' %}"></script>
-	<script src="{% static 'Bootstrap/bootstrap.min.js' %}"></script>
-
-	<style>
- 		@font-face {
-		   font-family: Futura; 
-		   src: url({% static 'Fonts/Futura.otf' %});
-		} 
-		body{
-			font-family: Futura;
-		}
-		.body-head{
-			font-family: Futura;
-			font-weight: bold;
-		}
-		.body-head-2{
-			font-family: Futura;
-			font-weight: bold;
-			font-size: 16px;
-		}
-		.line{
-			height: 1px;
-			background-color: #ccc;
-		}
-		.row{
-			margin-top: 20px;
-			margin-left: 20px;
-		}
-	</style>
-</head>
-<body>
-
-	<nav class="navbar navbar-default">
-	  <div class="container">
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>                        
-	      </button>
-	      <a class="navbar-brand" href="">Intelligent Lock</a>
-	    </div>
-	    <div class="collapse navbar-collapse" id="myNavbar">
-	      	<ul class="nav navbar-nav navbar-left">
-	      	</ul>
-	     	<ul class="nav navbar-nav navbar-right">
-	     		<li><a href="/">Home</a></li>
-	     		<li><a href="/admin/">Admin</a></li>
-      		</ul>
-	    </div>
-	  </div>
-	</nav>
-
+{% extends 'web_base.html' %}
+{% block content %}
 	<div class="container">
 
 		<div class="panel panel-default">
@@ -100,5 +43,4 @@
 		  	</div>
 		</div>
 	</div>
-</body>
-</html>
+{% endblock %}
