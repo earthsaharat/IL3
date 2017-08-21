@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<title>Intelligent Lock - Add Lock</title>
+	<link rel="stylesheet" href="{% static 'Bootstrap/bootstrap.min.css' %}">
+	<script src="{% static 'Bootstrap/jquery.min.js' %}"></script>
+	<script src="{% static 'Bootstrap/bootstrap.min.js' %}"></script>
+
+	<style>
+ 		@font-face {
+		   font-family: Futura; 
+		   src: url({% static 'Fonts/Futura.otf' %});
+		} 
+		body{
+			font-family: Futura;
+		}
+		.body-head{
+			font-family: Futura;
+			font-weight: bold;
+		}
+		.body-head-2{
+			font-family: Futura;
+			font-weight: bold;
+			font-size: 16px;
+		}
+		.line{
+			height: 1px;
+			background-color: #ccc;
+		}
+		.row{
+			margin-top: 20px;
+			margin-left: 20px;
+		}
+	</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-default">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>                        
+	      </button>
+	      <a class="navbar-brand" href="">Intelligent Lock</a>
+	    </div>
+	    <div class="collapse navbar-collapse" id="myNavbar">
+	      	<ul class="nav navbar-nav navbar-left">
+	      	</ul>
+	     	<ul class="nav navbar-nav navbar-right">
+	     		<li><a href="/">Home</a></li>
+	     		<li><a href="/admin/">Admin</a></li>
+      		</ul>
+	    </div>
+	  </div>
+	</nav>
+
+	<div class="container">
+
+		<div class="panel panel-default">
+		  	<div class="panel-heading">Locks</div>
+		  	<div class="panel-body">
+		  		<table class="table table-condensed">
+			    <thead>
+			      <tr>
+			        <th>mac</th>
+			        <th>name</th>
+			        <th>is lock</th>
+			        <th>active</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			    	{% for i in lock %}
+			     	<tr>
+			        	<td>{{i.mac}}</td>
+			        	<td>{{i.name}}</td>
+			        	<td>{{i.isLock}}</td>
+			        	<td>{{i.active}}</td>
+			      	</tr>
+					{% endfor %}
+			    </tbody>
+			</table>
+		  	</div>
+		</div>
+
+		<div class="panel panel-default">
+		  	<div class="panel-heading">Add Lock</div>
+		  	<div class="panel-body">
+		  		<form role="form" method="post" action="">{% csrf_token %}
+          	      	<fieldset>
+          	        	<div class="form-group"><input class="form-control" placeholder="mac" name="mac" type="text" maxlength="10" 		tofocus required=""></div>
+          	        	<div class="form-group"><input class="form-control" placeholder="Lock's Name" name="name" type="text" 	tofocus required=""></div>
+          	        	<div class="col-sm-2 col-sm-offset-5">
+          	        		<input type="submit" class="btn btn-lg btn-block" value="Add" style="background-color: #ccc;color: #fff">
+          	        	</div>
+          	      	</fieldset>
+          	  	</form>
+		  	</div>
+		</div>
+	</div>
+</body>
+</html>

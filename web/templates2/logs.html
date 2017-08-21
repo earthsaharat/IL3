@@ -1,0 +1,68 @@
+{% extends 'web_base.html' %}
+{% block content %}
+
+	<div class="container body">
+		<div class="panel panel-default">
+		  	<div class="panel-heading">
+		  		<div class="row">
+		  			<div class="col-xs-9"><p class="body-head-2">{{lock.name}}</p></div>
+		  		</div>
+		  	</div>
+		  	<div class="panel-body">
+		  		<div class="col-sm-9">
+		  			<div class="row">
+		  				<div class="col-sm-3"><p class="text-1">mac</p></div>
+		  				<div class="col-sm-9"><p class="text-2">{{lock.mac}}</p></div>
+		  			</div>
+		  			<div class="row">
+		  				<div class="col-sm-3"><p class="text-1">active</p></div>
+		  				<div class="col-sm-9"><p class="text-2">{{lock.active}}</p></div>
+		  			</div>
+		  			<div class="row">
+		  				<div class="col-sm-3"><p class="text-1">state</p></div>
+		  				{% if lock.isLock %}<div class="col-sm-9 text-2"><p>Lock</p></div>
+		  				{% else %}<div class="col-sm-9 text-2"><p>Unlock</p></div>{% endif %}
+		  			</div>
+		  		</div>
+		  		<div class="col-sm-3">
+		  			{% if lock.isLock %}<a class="button-1" href="/web/unlock/{{lock.mac}}">Unlock</a>
+		  			{% else %}<a class="button-1" href="/web/lock/{{lock.mac}}">Lock</a>{% endif %}
+		  		</div>
+		  	</div>
+		</div>
+
+		<div class="panel panel-default">
+		  	<div class="panel-heading body-head-2">Logs</div>
+		  	<div class="panel-body">
+		  		<table class="table table-condensed">
+			    <thead>
+			      <tr>
+			        <th>date</th>
+			        <th>action</th>
+			        <th>user</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			    	{% for i in sender %}
+			     	<tr>
+			     		{% load tz %}
+						<td>{{i.date}}</td>
+
+			        	{% if i.action is 1 %}
+			        		<td>Lock with web</td>
+			        	{% elif i.action is 2 %}
+			        		<td>Unlock with web</td>
+			        	{% endif %}
+			        	<td>{{i.user}}</td>
+			      	</tr>
+					{% endfor %}
+			    </tbody>
+			</table>
+		  	</div>
+		</div>
+
+	</div>
+
+
+
+{% endblock %}
