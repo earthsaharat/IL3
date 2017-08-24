@@ -29,14 +29,16 @@ def state(request,mac):
 
 def app_lock(request,mac):
 	locks = Lock.objects.filter(mac=mac)
-	if alock.isLock == False:
-		alock.isLock = True
-		alock.save()
+	for alock in locks:
+		if alock.isLock == False:
+			alock.isLock = True
+			alock.save()
 	return HttpResponse("OK")
 
 def app_unlock(request,mac):
 	locks = Lock.objects.filter(mac=mac)
-	if alock.isLock == True:
-		alock.isLock = False
-		alock.save()
+	for alock in locks:
+		if alock.isLock == True:
+			alock.isLock = False
+			alock.save()
 	return HttpResponse("OK")
