@@ -33,6 +33,8 @@ from web.views import web_unlock
 from web.views import web_logs
 from web.views import web_add_user
 
+
+
 urlpatterns = [
     url(r'^$', home, name='home'),
 
@@ -51,6 +53,9 @@ urlpatterns = [
     url(r'^web/unlock/(?P<mac>[-\w]+)$', web_unlock, name='web_unlock'),
     url(r'^web/logs/(?P<mac>[-\w]+)$', web_logs, name='web_logs'),
     url(r'^web/adduser/(?P<mac>[-\w]+)$', web_add_user, name='web_add_user'),
+
+    url(r'^app/lock/(?P<mac>[-\w]+)$', views.app_lock, name='app_lock'),
+    url(r'^app/unlock/(?P<mac>[-\w]+)$', views.app_unlock, name='app_unlock'),
 
     url(r'^admin/addlock/$', admin_addlock, name='admin_addlock'),
 ]

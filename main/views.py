@@ -26,3 +26,17 @@ def open(request,mac,side):
 def state(request,mac):
 	isLock = Lock.objects.get(mac=mac).isLock
 	return HttpResponse(isLock)
+
+def app_lock(request):
+	locks = Lock.objects.filter(mac=mac)
+	if alock.isLock == False:
+		alock.isLock = True
+		alock.save()
+	return HttpResponse("OK")
+
+def app_unlock(request):
+	locks = Lock.objects.filter(mac=mac)
+	if alock.isLock == True:
+		alock.isLock = False
+		alock.save()
+	return HttpResponse("OK")
